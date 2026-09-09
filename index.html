@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Clarinha VIP</title>
+
+    <!-- ========================================================================= -->
+    <!-- 🔗 CONFIGURE SEU LINK DE REDIRECIONAMENTO AQUI (MUDOU AQUI, MUDA TUDO):   -->
+    <!-- ========================================================================= -->
+    <script>
+        const REDIRECT_URL = "https://serverflow.dad/l/c4d11b04?shk=d2iedq2n";
+    </script>
+    <!-- ========================================================================= -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #08060c;
+            --card-bg: rgba(22, 14, 30, 0.65);
+            --card-border: rgba(217, 70, 239, 0.25);
+            --primary-purple: #a855f7;
+            --primary-pink: #ec4899;
+            --primary-gradient: linear-gradient(135deg, #9333ea 0%, #db2777 50%, #f43f5e 100%);
+            --primary-gradient-hover: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #fb7185 100%);
+            --glow-purple-pink: rgba(219, 39, 119, 0.5);
+            --glow-neon: rgba(168, 85, 247, 0.55);
+            --text-white: #ffffff;
+            --text-muted: #cbd5e1;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.3) 0%, transparent 60%),
+                radial-gradient(circle at 50% 100%, rgba(219, 39, 119, 0.22) 0%, transparent 55%),
+                radial-gradient(circle at 85% 35%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 24px 16px 40px;
+        }
+
+        /* Container Mobile First */
+        .container {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Status Online */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(26, 17, 36, 0.85);
+            border: 1px solid rgba(217, 70, 239, 0.2);
+            backdrop-filter: blur(12px);
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #22c55e;
+            animation: pulse-dot 1.8s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 14px #22c55e; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        /* Avatar com Efeito Neon Roxo/Rosa */
+        .avatar-wrapper {
+            position: relative;
+            margin-bottom: 14px;
+        }
+
+        .avatar-glow {
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(45deg, #a855f7, #ec4899, #f43f5e, #8b5cf6);
+            border-radius: 50%;
+            filter: blur(10px);
+            opacity: 0.85;
+            animation: rotate-glow 4s linear infinite;
+        }
+
+        @keyframes rotate-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .avatar-img-box {
+            position: relative;
+            width: 106px;
+            height: 106px;
+            border-radius: 50%;
+            border: 2.5px solid #d946ef;
+            overflow: hidden;
+            background-color: #160f22;
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
+        }
+
+        .avatar-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Selo de Verificado */
+        .verified-badge {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2.5px solid #08060c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .verified-badge svg {
+            width: 13px;
+            height: 13px;
+            fill: #ffffff;
+        }
+
+        /* Informações do Perfil */
+        .profile-name {
+            font-size: 21px;
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(180deg, #ffffff 30%, #f3e8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-bio {
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: #e2e8f0;
+            text-align: center;
+            max-width: 320px;
+            margin-bottom: 18px;
+            font-weight: 500;
+        }
+
+        /* Redes Sociais Pequenas */
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .social-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(217, 70, 239, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+        }
+
+        .social-btn:hover, .social-btn:active {
+            background: rgba(219, 39, 119, 0.25);
+            border-color: #ec4899;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px var(--glow-purple-pink);
+        }
+
+        .social-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Botão Principal de Conversão (CTA) */
+        .cta-button {
+            width: 100%;
+            background: var(--primary-gradient);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 17px 22px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 28px var(--glow-purple-pink), 0 0 1px rgba(255,255,255,0.4) inset;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            cursor: pointer;
+            animation: pulse-button 2.4s infinite;
+        }
+
+        @keyframes pulse-button {
+            0% { transform: scale(1); box-shadow: 0 8px 24px rgba(219, 39, 119, 0.45); }
+            50% { transform: scale(1.02); box-shadow: 0 12px 36px rgba(168, 85, 247, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 8px 24px rgba(219, 39, 119, 0.45); }
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(
+                60deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            transform: rotate(25deg);
+            animation: shimmer 3.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -60%; }
+            30% { left: 140%; }
+            100% { left: 140%; }
+        }
+
+        .cta-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cta-left svg {
+            width: 22px;
+            height: 22px;
+            fill: #ffffff;
+        }
+
+        .cta-arrow svg {
+            width: 18px;
+            height: 18px;
+            fill: #ffffff;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover .cta-arrow svg {
+            transform: translateX(4px);
+        }
+
+        /* Divisor DESTAQUES */
+        .section-divider {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(217, 70, 239, 0.4), transparent);
+        }
+
+        .divider-text {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            color: #e9d5ff;
+            text-transform: uppercase;
+        }
+
+        /* Card Slider */
+        .slider-card {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(16px);
+            margin-bottom: 20px;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
+        }
+
+        .slides-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .slide-item img, .slide-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Classe de Blur Especial de 20-30% */
+        .media-blur {
+            filter: blur(9px);
+            transform: scale(1.08);
+        }
+
+        /* Badge Censor / Aviso de Blur */
+        .censor-badge {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(18, 10, 26, 0.8);
+            border: 1px solid rgba(236, 72, 153, 0.5);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 5px 10px;
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 4;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Overlay Gradiente */
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.15) 0%,
+                rgba(15, 8, 22, 0.25) 50%,
+                rgba(8, 6, 12, 0.96) 100%
+            );
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Setas do Carrossel */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            background: rgba(22, 14, 32, 0.7);
+            border: 1px solid rgba(217, 70, 239, 0.25);
+            border-radius: 50%;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+        }
+
+        .slider-arrow:hover, .slider-arrow:active {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-color: #ec4899;
+            box-shadow: 0 0 16px var(--glow-purple-pink);
+        }
+
+        .slider-arrow.prev { left: 12px; }
+        .slider-arrow.next { right: 12px; }
+
+        .slider-arrow svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Info Rodapé do Slide */
+        .slide-footer-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            pointer-events: auto;
+        }
+
+        .slide-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+
+        .slide-cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #f472b6;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+
+        .slide-cta-link svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+            transition: transform 0.2s ease;
+        }
+
+        .slide-item:hover .slide-cta-link {
+            color: #ffffff;
+        }
+
+        .slide-item:hover .slide-cta-link svg {
+            transform: translateX(4px);
+        }
+
+        /* Bolinhas / Dots */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 30px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            width: 22px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            box-shadow: 0 0 12px var(--glow-purple-pink);
+        }
+
+        /* Rodapé */
+        .footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-badge {
+            font-size: 10px;
+            font-weight: 800;
+            color: #f472b6;
+            background: rgba(236, 72, 153, 0.12);
+            border: 1px solid rgba(236, 72, 153, 0.25);
+            padding: 3px 10px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 14px;
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: #f472b6;
+        }
+
+        .copyright {
+            font-size: 10px;
+            color: #64748b;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Status Flutuante -->
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            ONLINE AGORA
+        </div>
+
+        <!-- Foto de Perfil com Borda Neon e Selo -->
+        <div class="avatar-wrapper">
+            <div class="avatar-glow"></div>
+            <div class="avatar-img-box">
+                <!-- FOTO DE PERFIL: -->
+                <img id="avatar-img" src="https://cdn.jsdelivr.net/gh/pesty199915-create/midia@main/images/4893dfc8-d4ee-4cbb-bfe6-6684fcd93dc1.jpg" alt="Perfil">
+            </div>
+            <div class="verified-badge">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Nome e Bio -->
+        <h1 class="profile-name">Clarinha VIP</h1>
+        
+        <p class="profile-bio">
+            Se isso aqui já te prendeu, imagina o que eu não posso postar no Instagram... 🔥
+        </p>
+
+        <!-- Redes Sociais Pequenas -->
+        <div class="social-icons">
+            <a class="social-btn go-redirect" title="Instagram">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+            <a class="social-btn go-redirect" title="Telegram VIP">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.34-.635.34l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.941z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Botão CTA Principal -->
+        <a class="cta-button go-redirect">
+            <div class="cta-left">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.34-.635.34l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.941z"/>
+                </svg>
+                <span>ENTRAR NO TELEGRAM VIP 🔞</span>
+            </div>
+            <div class="cta-arrow">
+                <svg viewBox="0 0 24 24">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </div>
+        </a>
+
+        <!-- Seção DESTAQUES -->
+        <div class="section-divider">
+            <div class="divider-line"></div>
+            <span class="divider-text">Destaques</span>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- Carrossel de Mídia (Imagens e Vídeo) -->
+        <div class="slider-card">
+            <div class="slider-wrapper">
+                
+                <!-- Botões de Navegação -->
+                <div class="slider-arrow prev" onclick="prevSlide(event)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </div>
+
+                <div class="slider-arrow next" onclick="nextSlide(event)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </div>
+
+                <!-- Lista de Slides -->
+                <div class="slides-container" id="slides-container">
+
+                    <!-- SLIDE 1: PRIMEIRA MÍDIA (FOTO COM BLUR 25%) -->
+                    <div class="slide-item go-redirect">
+                        <div class="censor-badge">🔞 PRIVADO</div>
+                        <img class="media-blur" src="https://cdn.jsdelivr.net/gh/pesty199915-create/midia@main/images/pibwlqgx.jpeg" alt="Destaque 1">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-footer-info">
+                            <h3 class="slide-title">FOTO EXCLUSIVA 🔞</h3>
+                            <span class="slide-cta-link">
+                                DESBLOQUEAR FOTO
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42 5.43 5.43H5v2z"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 2: SEGUNDA MÍDIA (VÍDEO MP4) -->
+                    <div class="slide-item go-redirect">
+                        <video autoplay muted loop playsinline poster="https://cdn.jsdelivr.net/gh/pesty199915-create/midia@main/images/pibwlqgx.jpeg">
+                            <source src="https://cdn.jsdelivr.net/gh/pesty199915-create/midia@main/images/upload%20(2).mp4" type="video/mp4">
+                        </video>
+                        <div class="slide-overlay"></div>
+                        <div class="slide-footer-info">
+                            <h3 class="slide-title">VÍDEO COMPLETO 🔞</h3>
+                            <span class="slide-cta-link">
+                                LIBERAR VÍDEO COMPLETO
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42 5.43 5.43H5v2z"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 3: TERCEIRA MÍDIA (FOTO COM BLUR 25%) -->
+                    <div class="slide-item go-redirect">
+                        <div class="censor-badge">🔞 PRIVADO</div>
+                        <img class="media-blur" src="https://cdn.jsdelivr.net/gh/pesty199915-create/midia@main/images/2g7v1zx5.jpeg" alt="Destaque 3">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-footer-info">
+                            <h3 class="slide-title">CONTEÚDO SEM CENSURA</h3>
+                            <span class="slide-cta-link">
+                                VER SEM CENSURA
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42 5.43 5.43H5v2z"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicadores de Bolinhas -->
+        <div class="slider-dots" id="slider-dots">
+            <div class="dot active" onclick="goToSlide(0)"></div>
+            <div class="dot" onclick="goToSlide(1)"></div>
+            <div class="dot" onclick="goToSlide(2)"></div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <span class="footer-badge">+18 CONTEÚDO ADULTO</span>
+            <div class="footer-links">
+                <a class="go-redirect">Privacy Policy</a>
+                <span>•</span>
+                <a class="go-redirect">Terms</a>
+                <span>•</span>
+                <a class="go-redirect">Report</a>
+            </div>
+            <p class="copyright">© 2026 Todos os direitos reservados.</p>
+        </footer>
+
+    </div>
+
+    <!-- Script de Navegação e Redirecionamento Automático -->
+    <script>
+        // Função universal de redirecionamento
+        function goToLink() {
+            if (typeof REDIRECT_URL !== 'undefined' && REDIRECT_URL) {
+                window.open(REDIRECT_URL, '_blank');
+            }
+        }
+
+        // Aplica o link automaticamente em todos os elementos com a classe .go-redirect
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.go-redirect').forEach(element => {
+                if (element.tagName === 'A') {
+                    element.setAttribute('href', REDIRECT_URL);
+                    element.setAttribute('target', '_blank');
+                    element.setAttribute('rel', 'noopener');
+                } else {
+                    element.addEventListener('click', goToLink);
+                }
+            });
+        });
+
+        // Lógica do Slider
+        let currentSlide = 0;
+        const slidesContainer = document.getElementById('slides-container');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = document.querySelectorAll('.slide-item').length;
+
+        function updateSlider() {
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide(e) {
+            if(e) e.stopPropagation();
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide(e) {
+            if(e) e.stopPropagation();
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        // Troca automática a cada 5 segundos
+        let autoSlide = setInterval(nextSlide, 5000);
+
+        document.querySelector('.slider-card').addEventListener('mouseenter', () => clearInterval(autoSlide));
+        document.querySelector('.slider-card').addEventListener('touchstart', () => clearInterval(autoSlide));
+
+        // Suporte a swipe no celular
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const slider = document.querySelector('.slider-wrapper');
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive: true});
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 40) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 40) {
+                prevSlide();
+            }
+        }
+    </script>
+</body>
+</html>
